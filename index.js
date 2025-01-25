@@ -53,3 +53,4 @@ server.listen(PORT, () => {
 
 
 app.use("/auth", authRoutes);
+app.use("/user", authRoutes);
