@@ -20,7 +20,8 @@ const server = http.createServer(app);
 
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        // origin: "http://localhost:5173",
+        origin: "https://saylani-system-frontend-hackathon.vercel.app/",
         methods: ["GET", "POST", "PUT", "DELETE"],
         allowedHeaders: ["Content-Type", "Authorization"],
         credentials: true,
