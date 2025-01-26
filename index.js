@@ -8,6 +8,8 @@ import cors from "cors";
 import "dotenv/config";
 
 import authRoutes from "./router/authentication/auth.js";
+import adminLoanRoutes from "./router/admin/addLoans.js";
+import adminLoanCategoryRoutes from "./router/admin/addCategory.js";
 
 
 const app = express();
@@ -53,4 +55,5 @@ server.listen(PORT, () => {
 
 
 app.use("/auth", authRoutes);
-app.use("/user", authRoutes);
+app.use("/admin", adminLoanRoutes);
+app.use("/adminCat", adminLoanCategoryRoutes);
