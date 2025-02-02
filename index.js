@@ -27,17 +27,12 @@ app.use(express.json());
 // MongoDB Connection with Try-Catch
 const connectDB = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            serverSelectionTimeoutMS: 5000,  // 5 seconds timeout
-        });
-        console.log('MongoDB connected successfully!');
+        await mongoose.connect(process.env.MONGODB_URI);
+        console.log("MongoDB connected successfully!");
     } catch (error) {
-        console.error('Error connecting to MongoDB:', error.message);
+        console.error("Error connecting to MongoDB:", error.message);
     }
 };
-
 
 // Call connectDB in a try-catch
 try {
@@ -65,7 +60,7 @@ try {
     console.error("Error in setting up routes:", error.message);
 }
 
-// Listen to the port with Try-Catch
+
 try {
     app.listen(PORT, () => {
         console.log(`Server is running on port ${PORT}`);

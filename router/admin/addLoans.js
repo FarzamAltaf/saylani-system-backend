@@ -1,7 +1,7 @@
 import express from "express";
 import Joi from "joi";
 import "dotenv/config";
-import { sendEmail } from "../../utils/email.js";
+// import { sendEmail } from "../../utils/email.js";
 import Loan from "../../models/loan.js";
 
 const router = express.Router();
