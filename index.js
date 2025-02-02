@@ -13,8 +13,8 @@ import adminLoanCategoryRoutes from "./router/admin/addCategory.js";
 
 
 const app = express();
-const PORT = 4000;
-const server = http.createServer(app);
+// const PORT = 4000;
+// const server = http.createServer(app);
 
 
 
@@ -48,9 +48,9 @@ const connectDB = async () => {
 connectDB();
 
 
-server.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// server.listen(PORT, () => {
+//     console.log(`Server is running on http://localhost:${PORT}`);
+// });
 
 
 
@@ -58,3 +58,8 @@ server.listen(PORT, () => {
 app.use("/auth", authRoutes);
 app.use("/admin", adminLoanRoutes);
 app.use("/adminCat", adminLoanCategoryRoutes);
+
+app.get("/", async (req, res) => {
+    const users = await Users.find();
+    res.json(users);
+});
