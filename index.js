@@ -31,43 +31,32 @@ const connectDB = async () => {
         console.log("MongoDB connected successfully!");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error.message);
+        process.exit(1); // Stop the server if DB connection fails
     }
 };
 
-// Call connectDB in a try-catch
-try {
-    connectDB();
-} catch (error) {
-    console.error("Error during DB connection:", error.message);
-}
+// Call connectDB once and exit if failure
+connectDB();
 
-// API Routes with Try-Catch
-try {
-    app.use("/auth", authRoutes);
-    app.use("/admin", adminLoanRoutes);
-    app.use("/adminCat", adminLoanCategoryRoutes);
+// API Routes
+app.use("/auth", authRoutes);
+app.use("/admin", adminLoanRoutes);
+app.use("/adminCat", adminLoanCategoryRoutes);
 
-    // Home Route to Fetch Users with Try-Catch
-    app.get("/", async (req, res) => {
-        try {
-            const users = await User.find();
-            res.json(users);
-        } catch (error) {
-            res.status(500).json({ message: "Error fetching users", error: error.message });
-        }
-    });
-} catch (error) {
-    console.error("Error in setting up routes:", error.message);
-}
+// Home Route to Fetch Users
+app.get("/", async (req, res) => {
+    try {
+        const users = await User.find();
+        res.json(users);
+    } catch (error) {
+        console.error("Error fetching users:", error.message);
+        res.status(500).json({ message: "Error fetching users", error: error.message });
+    }
+});
 
+// Start the server after DB connection
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
 
-try {
-    app.listen(PORT, () => {
-        console.log(`Server is running on port ${PORT}`);
-    });
-} catch (error) {
-    console.error("Error during server startup:", error.message);
-}
-
-// Vercel Export
 export default app;
