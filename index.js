@@ -10,6 +10,7 @@ import "dotenv/config";
 import authRoutes from "./router/authentication/auth.js";
 import adminLoanRoutes from "./router/admin/addLoans.js";
 import adminLoanCategoryRoutes from "./router/admin/addCategory.js";
+import User from "./models/users.js";
 
 
 const app = express();
@@ -60,6 +61,6 @@ app.use("/admin", adminLoanRoutes);
 app.use("/adminCat", adminLoanCategoryRoutes);
 
 app.get("/", async (req, res) => {
-    const users = await Users.find();
+    const users = await User.find();
     res.json(users);
 });
