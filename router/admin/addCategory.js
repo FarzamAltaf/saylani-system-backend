@@ -8,7 +8,7 @@ const router = express.Router();
 
 const loanCategorySchema = Joi.object({
     title: Joi.string().required(),
-    loanId: Joi.string().required(),  // Add loanId to schema
+    loanId: Joi.string().required(),
 });
 
 
